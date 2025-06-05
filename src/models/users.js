@@ -1,28 +1,30 @@
 const { DataTy, DataTypes } = require ('sequelize')
 const sequelize = require ('../config/database')
 
-const Produtos = sequelize.define('Produtos', {
+const Users = sequelize.define('Users', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nome: {
+    name:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    preco: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+            isEmail: true
+        }
     },
-    categoria: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    Image_url: {
-        type: DataTypes.TEXT
+
     }
 
 })
 
-module.exports = Produtos
+module.exports = Users
